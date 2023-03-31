@@ -11,7 +11,7 @@ streamlit.text("🥑🍞 Avocado toast")
 
 streamlit.header('🍌🥭 Build Your Own Fruit Smoothie 🥝🍇')
 
-## add dataframe
+## add independent dataframe 
 import pandas as pd
 my_fruit_list = pd.read_csv("https://uni-lab-files.s3.us-west-2.amazonaws.com/dabw/fruit_macros.txt")
 my_fruit_list.set_index('Fruit', inplace = True)
@@ -26,8 +26,9 @@ streamlit.dataframe(fruits_to_show)
 
 
 ## call fruityvice API from app
-
 import requests
 fruityvice_response = requests.get("https://fruityvice.com/api/fruit/watermelon")
-streamlit.text(fruityvice_response.json())
+
+## add header with text from fruityvice containng info about the fruit
 streamlit.header("Fruityvice Fruit Advice!")
+streamlit.text(fruityvice_response.json())
