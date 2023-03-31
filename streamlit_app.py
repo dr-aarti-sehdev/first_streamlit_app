@@ -56,4 +56,7 @@ my_data_rows = my_cur.fetchall()
 streamlit.header("The fruit load list contains: ")
 streamlit.dataframe(my_data_rows)
 
-## query data
+## add fruit to the list if missing
+## ask for input from user to enter a type of fruit they want to know about
+add_my_fruit = streamlit.text_input('What fruit would you like to add?','Jackfruit')
+
