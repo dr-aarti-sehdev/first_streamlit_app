@@ -45,7 +45,7 @@ try:
     if not fruit_choice:
         streamlit.error("Please select a fruit to get information.")
     else:
-        fruitydat = get_fruityvice_data()
+        fruitydat = get_fruityvice_data(fruit_choice)
         # display normalised data as a table
         streamlit.dataframe(fruitydat)
 
