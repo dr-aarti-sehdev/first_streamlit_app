@@ -3,7 +3,7 @@ import streamlit
 import pandas as pd
 import requests
 import snowflake.connector
-from urlib.error import URLError
+from urllib.error import URLError
 
 ## add titles, headers and text
 streamlit.title("My Parents New Healthy Diner")
