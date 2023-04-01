@@ -28,24 +28,29 @@ fruits_to_show = my_fruit_list.loc[fruits_selected]
 ## display dataframe
 streamlit.dataframe(fruits_to_show)
 
-## add header with text from fruityvice containng info about the fruit
-streamlit.header("Fruityvice Fruit Advice!")
-
-
-try:
-  ## ask for input from user to enter a type of fruit they want to know about
-  fruit_choice = streamlit.text_input('What fruit would you like information about?')
-  if not fruit_choice:
-    streamlit.error("Please select a fruit to get information.")
-  else:
-    ## call fruityvice API from app
+## define fruityvice data function
+def get_fruityvice_data(this_fruit_choice):
+     ## call fruityvice API from app
     fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_choice)
     ## take the json version of the response and normalise it
     fruityvice_normalized = pd.json_normalize(fruityvice_response.json())
-    # display normalised data as a table
-    streamlit.dataframe(fruityvice_normalized)
+    return fruityvice_normalized
+
+## add header with text from fruityvice containng info about the fruit
+streamlit.header("Fruityvice Fruit Advice!")
+
+try:
+    ## ask for input from user to enter a type of fruit they want to know about
+    fruit_choice = streamlit.text_input('What fruit would you like information about?')
+    if not fruit_choice:
+        streamlit.error("Please select a fruit to get information.")
+    else:
+        fruitydat = get_fruityvice_data()
+        # display normalised data as a table
+        streamlit.dataframe(fruitydat)
+
 except URLError as e:
-  streamlit.error()
+    streamlit.error()
 
 streamlit.stop()
 ## connect to snowflake
