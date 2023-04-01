@@ -59,4 +59,9 @@ streamlit.dataframe(my_data_rows)
 ## add fruit to the list if missing
 ## ask for input from user to enter a type of fruit they want to know about
 add_my_fruit = streamlit.text_input('What fruit would you like to add?','Jackfruit')
+streamlit.write('Thanks for adding ', add_my_fruit)
+
+
+my_cur.execute("INSERT INTO fruit_load_list VALUES ('from streamlit');")
+
 
